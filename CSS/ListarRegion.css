@@ -1,0 +1,21 @@
+html{
+    background-image: url(/img/regiones9.jpeg);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-attachment: fixed;
+    color: white;
+}
+.container {
+    text-align: left;
+    width: 80%;
+}
+
+.btn-custom {
+    background-color: #1976d2;
+}
+
+.BigTitle{
+    margin-top: 110px;
+}
+

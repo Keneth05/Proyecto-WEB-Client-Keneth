@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- links de materialize y los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- css para la pagina -->
+    <link rel="stylesheet" href="/CSS/General.css">
+    <link rel="stylesheet" href="/CSS/ListarNombre.css">
+    <title>ListaNombre</title>
+</head>
+
+<body>
+        <!-- nav y sidenav de la pagina con todos sus links -->
+    <header>
+        <div class="navbar-fixed">
+            <nav class="nav-background">
+                <div class="nav-wrapper Header">
+                    <a href="../Pages/ListaPaises.html" class="brand-logo left">
+                        <span class="logo-text"><i class="material-icons World">language</i>Proyecto Web Client</span>
+                    </a>
+                    <a href="#" data-target="mobile-menu" class="sidenav-trigger right">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="/Pages/ListaPaises.html">Lista Paises</a></li>
+                        <li><a href="/Pages/ListaPaisesNombre.html">Paises por Nombre</a></li>
+                        <li><a href="/Pages/ListaPaisesRegion.html">Paises por Región</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul class="sidenav" id="mobile-menu">
+            <li>
+                <a href="#" class="close-sidenav">
+                    <i class="material-icons white-text">close</i>
+                </a>
+            </li>
+            <li><a href="/Pages/ListaPaises.html"><i class="material-icons black-text">home</i>
+                    Lista Paises</a></li>
+            <li><a href="/Pages/ListaPaisesNombre.html"><i class="material-icons black-text">task_alt</i>
+                    Paises por Nombre</a></li>
+            <li><a href="/Pages/ListaPaisesRegion.html"><i class="material-icons black-text">task_alt</i>
+                    Paises por Región</a>
+            </li>
+            <li>
+                <img class="WorldImg" src="/img/earth-11009_1280.png" alt="">
+            </li>
+        </ul>
+    </header>
+
+    <main class="container General">
+
+        <!-- contenedor que tendra el titulo de la pagina y ademas el input para que el usuario ingrese el nombre del pais -->
+        <section class="row NameContainer">
+            <div class="col s12">
+                <h2 class="card-title center BigTitle">Buscar Países por su Nombre</h2>
+                <fieldset>
+                    <legend>Nombre de País para Buscar</legend>
+                    <div class="input-field">
+                        <input id="search" type="text" class="validate" placeholder="Escribe el nombre del país...">
+                        <button class="btn Search"><i class="material-icons right">zoom_in</i>Buscar</button>
+                    </div>
+                </fieldset> 
+            </div>
+        </section>
+        <!-- contenedor donde se generan los paises -->
+        <div class="CountryList">              
+        </div>
+
+                <!-- template de la carta o lugar donde se mostrara el pais, con el contenido de ella  -->
+        <template id="template-Country">
+            <div class="row CountryItem">
+
+                <div class="col s12 m8 CountryInfo">
+                    <span class="CountryName">Switzerland</span>
+                    <small class="CountryCapital">Bern</small>
+                </div>
+
+                <div class="col s12 m4 right-align">
+                    <button class="btn SeeMore">Ver Detalles</button>
+                </div>
+            </div>
+        </template>
+    </main>
+
+        <!-- modal donde se muestra informacion extra sobre cada pais, este se hace con clases predefinidas de materialize como la de footer o modal content -->
+    <div id="CountryModalDetails" class="modal">
+        <div class="modal-content">
+            <div class="center-align ImageAndTitle">
+                <h4 id="CountryName"></h4>
+                <img id="Flag" src="" alt="Country Flag" >
+            </div>
+            <!-- linea para separar contenido -->
+            <div class="divider"></div> 
+            <div class="row Information">
+                <div class="col s12 m6 l6">
+                    <p><i class="material-icons left">location_city</i> <strong>Capital:</strong> <span id="CountryCapital"></span></p>                      
+                    <p><i class="material-icons left">people</i> <strong>Población:</strong> <span  id="CountryPopulation"></span></p>                      
+                    <p><i class="material-icons left">language</i> <strong>Idiomas:</strong> <span id="CountryLenguague"></span></p>  
+                    <p><i class="material-icons left">radar</i> <strong>Área:</strong> <span id="CountryArea"></span></p>
+                </div>
+                <div class="col s12 m6 l6">
+                    <p><i class="material-icons left">public</i> <strong>Región:</strong> <span id="CountryRegion"></span></p>
+                    <p><i class="material-icons left">payments</i> <strong>Moneda:</strong> <span id="CountryCoin"></span></p>
+                    <p><i class="material-icons left">savings</i> <strong>Símbolo:</strong> <span id="CountryCoinSymbol"></span></p>
+                    <p><i class="material-icons left">south_america</i> <strong>Continente:</strong> <span id="CountryContinent"></span></p>
+                </div>                  
+                
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn Close">Cerrar</a>
+        </div>
+    </div>
+
+
+        <!-- links de los diferentes scripts de JavaScript que ocupa la pagina para servir correctamente -->
+    <script src="/JavaScript/General.js"></script>
+    <script src="/JavaScript/Region&Nombre.js"></script>
+    <script src="/JavaScript/PorNombre.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
